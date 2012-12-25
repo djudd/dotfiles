@@ -35,3 +35,9 @@ autocmd vimenter * if !argc() | NERDTree | endif
 
 " auto close vim if only nerdtree window remains open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+
+" search for the word under the cursor in project - requires ack & vim-ack
+nnoremap <F4> *<C-O>:AckFromSearch!<CR>
+
+" add ctrl-p file open support
+set runtimepath^=~/.vim/bundle/ctrlp.vim
