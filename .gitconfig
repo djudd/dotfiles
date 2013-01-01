@@ -3,3 +3,5 @@
 [user]
 	name = David Judd
 	email = david@academia.edu
+[push]
+	default = simple

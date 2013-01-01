@@ -28,6 +28,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 alias l='ls -la'
 alias be='bundle exec'
+alias app='cd $ACADEMIA_APP'
 alias vapp='cd $ACADEMIA_APP; vim'
 alias g='git'
 alias ghome='git --work-tree=$HOME --git-dir=$HOME/.dotfiles.git'
+
+export PATH="$HOME/Library/Haskell/bin:$PATH"
