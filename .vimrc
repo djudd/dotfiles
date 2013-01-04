@@ -21,7 +21,7 @@ set hlsearch      " highlight search terms
 set incsearch     " show matches as you type search terms
 
 set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
+set undolevels=1000      " use many more levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set visualbell           " don't beep
@@ -29,6 +29,14 @@ set noerrorbells         " don't beep
 
 set nobackup      " don't let vim write backup files
 set noswapfile
+
+" remove trailing whitespace
+autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" use F1 and F2 to paste/copy from/to the system clipboard
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+vmap <F2> :w !pbcopy<CR><CR>
 
 " auto open nerdtree if no files passed
 autocmd vimenter * if !argc() | NERDTree | endif
