@@ -1,11 +1,16 @@
 set expandtab     " use spaces for tabs
 set tabstop=2     " a tab is two spaces
 set shiftwidth=2  " autoindent two spaces
+
 set smartindent
+set smarttab
+filetype indent plugin on
+
+set nocompatible  " disable vi compatibility mode
 
 syntax enable
 
-autocmd FileType rb autocmd BufWritePre <buffer> :%s/\s\+$//e
+runtime macros/matchit.vim
 
 call pathogen#infect()
 
@@ -16,7 +21,6 @@ set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " show matching parentheses
 set ignorecase    " when searching
 set smartcase     " when searching - ignore case only when searching all lower case
-set smarttab
 set hlsearch      " highlight search terms
 set incsearch     " show matches as you type search terms
 
@@ -31,7 +35,7 @@ set nobackup      " don't let vim write backup files
 set noswapfile
 
 " remove trailing whitespace
-autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,css,html autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use F1 and F2 to paste/copy from/to the system clipboard
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
@@ -46,6 +50,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " search for the word under the cursor in project - requires ack & vim-ack
 nnoremap <F4> *<C-O>:AckFromSearch!<CR>
+
+" replace the word under the cursor
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " add ctrl-p file open support
 set runtimepath^=~/.vim/bundle/ctrlp.vim
