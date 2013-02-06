@@ -8,8 +8,8 @@ export ACADEMIA_PGSQL=/usr/local/var/postgres
 export ACADEMIA_MONGO=/usr/local/var/mongodb
 export ACADEMIA_SHELL=~/.academia-shell
 export ACADEMIA_WIKI=~/src/academia-edu/academia-app.wiki
-export ACADEMIA_ZOO=~/src/academia-edu/academia-zoo
-export ACADEMIA_CONFIG=~/src/academia-edu/academia-config
+export ACADEMIA_ZOO=~/src/academia-edu/zoo
+export ACADEMIA_CONFIG=~/src/academia-edu/config
 
 export RUBY_HEAP_MIN_SLOTS=1000000
 export RUBY_HEAP_SLOTS_INCREMENT=1000000
@@ -26,6 +26,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 . $ACADEMIA_SHELL/academia-shell.sh
 
+alias vim='mvim'
 alias l='ls -la'
 alias be='bundle exec'
 alias app='cd $ACADEMIA_APP'
@@ -34,3 +35,7 @@ alias g='git'
 alias ghome='git --work-tree=$HOME --git-dir=$HOME/.dotfiles.git'
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export SVM_LIGHT_HOME=/Users/david/svm_light5

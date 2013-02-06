@@ -4,15 +4,27 @@ set shiftwidth=2  " autoindent two spaces
 
 set smartindent
 set smarttab
-filetype indent plugin on
 
 set nocompatible  " disable vi compatibility mode
+
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'slim-template/vim-slim'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Valloric/YouCompleteMe'
+
+filetype plugin indent on
 
 syntax enable
 
 runtime macros/matchit.vim
-
-call pathogen#infect()
 
 set hidden        
 set nowrap        " don't wrap lines
@@ -56,3 +68,6 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " add ctrl-p file open support
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" local replace Ruby variable
+map gr gdv<Plug>(textobj-rubyblock-a):s/<C-R>///g<left><left>
