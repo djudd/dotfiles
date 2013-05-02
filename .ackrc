@@ -1,2 +1,9 @@
 --type-set=slim=.slim
+--type-set=haml=.haml
 --type-set=scss=.scss
+--type-set=jade=.jade
+--type-set=coffee=.coffee
+--type-add=ruby=.ru,.thor
+--ignore-dir=public/javascripts
+--ignore-dir=public/css
+--ignore-dir=coverage

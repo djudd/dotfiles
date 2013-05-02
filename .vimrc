@@ -19,10 +19,12 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-scripts/EasyGrep'
+Bundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
-
-syntax enable
+syntax on
 
 runtime macros/matchit.vim
 
@@ -46,8 +48,12 @@ set noerrorbells         " don't beep
 set nobackup      " don't let vim write backup files
 set noswapfile
 
+" EasyGrep settings
+let g:EasyGrepRecursive = 1
+let g:EasyGrepCommand = 1
+
 " remove trailing whitespace
-autocmd FileType ruby,css,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,css,scss,html,js,erb,haml,slim,coffee,yaml,thor autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use F1 and F2 to paste/copy from/to the system clipboard
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
@@ -63,11 +69,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " search for the word under the cursor in project - requires ack & vim-ack
 nnoremap <F4> *<C-O>:AckFromSearch!<CR>
 
+set grepprg=ack
+
 " replace the word under the cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " add ctrl-p file open support
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-" local replace Ruby variable
-map gr gdv<Plug>(textobj-rubyblock-a):s/<C-R>///g<left><left>
+" local replace Ruby variable - not yet reliable at all
+" map gr gdv<Plug>(textobj-rubyblock-a):s/<C-R>///g<left><left>

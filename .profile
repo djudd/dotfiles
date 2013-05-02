@@ -1,6 +1,7 @@
 export PATH=~/local/sbin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 source ~/.academia-secrets
+source ~/.personal-aws-server
 export ACADEMIA_LDAP_USERNAME=djudd
 
 export ACADEMIA_APP=~/src/academia-edu/academia-app
@@ -16,6 +17,7 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=100000000
 export RUBY_HEAP_FREE_MIN=500000
+export RUBY_CFLAGS="-march=native -O3"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -33,9 +35,14 @@ alias app='cd $ACADEMIA_APP'
 alias vapp='cd $ACADEMIA_APP; vim'
 alias g='git'
 alias ghome='git --work-tree=$HOME --git-dir=$HOME/.dotfiles.git'
+alias mssh='ssh -i ~/.ssh/personal-aws-default.pem $PERSONAL_AWS_SERVER'
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export SVM_LIGHT_HOME=/Users/david/svm_light5
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi

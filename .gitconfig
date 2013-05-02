@@ -5,3 +5,7 @@
 	email = david@academia.edu
 [push]
 	default = simple
+[core]
+	editor = vim
+[diff]
+	renames = copies
