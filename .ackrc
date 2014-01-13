@@ -5,5 +5,7 @@
 --type-set=coffee=.coffee
 --type-add=ruby=.ru,.thor
 --ignore-dir=public/javascripts
+--ignore-dir=public/stylesheets
 --ignore-dir=public/css
+--ignore-dir=public/tiny_mce
 --ignore-dir=coverage

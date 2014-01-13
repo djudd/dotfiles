@@ -22,6 +22,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/EasyGrep'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
 
 filetype plugin indent on
 syntax on
@@ -53,7 +54,7 @@ let g:EasyGrepRecursive = 1
 let g:EasyGrepCommand = 1
 
 " remove trailing whitespace
-autocmd FileType ruby,css,scss,html,js,erb,haml,slim,coffee,yaml,thor autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,css,scss,html,js,erb,haml,slim,jade,coffee,yaml,thor,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use F1 and F2 to paste/copy from/to the system clipboard
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
