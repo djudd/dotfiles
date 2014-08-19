@@ -8,4 +8,10 @@
 --ignore-dir=public/stylesheets
 --ignore-dir=public/css
 --ignore-dir=public/tiny_mce
+--ignore-dir=public/assets
 --ignore-dir=coverage
+--ignore-dir=node_modules
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-dir=.bunch-cache
+--ignore-dir=.sass-cache
