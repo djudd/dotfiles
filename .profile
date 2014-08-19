@@ -37,7 +37,10 @@ alias vapp='cd $ACADEMIA_APP; vim'
 alias g='git'
 alias ghome='git --work-tree=$HOME --git-dir=$HOME/.dotfiles.git'
 alias mssh='ssh -i ~/.ssh/personal-aws-default.pem $PERSONAL_AWS_SERVER'
-alias mmir='git checkout master && git push && git checkout release && git pull && git merge master -m "mmir" && git push && be cap production deploy && git checkout master'
+alias mmir='git checkout master && git push && git checkout release && git fetch && git reset --hard origin/release && git merge master -m "mmir" && git push && be cap production deploy && git checkout master'
+alias sc='cd $ACADEMIA_APP && bundle exec rails console'
+alias setup_testdb='cd $ACADEMIA_APP; be rake db:structure:dump; RAILS_ENV=test be rake db:drop; RAILS_ENV=test be rake db:create db:structure:load'
+alias usproxy='ssh -L 3128:localhost:8888 -N -i ~/.ssh/personal-aws-default.pem $PERSONAL_AWS_SERVER'
 
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
