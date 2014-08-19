@@ -8,4 +8,6 @@
 [core]
 	editor = vim
 [diff]
-	renames = copies
+  renames = copies
+[rerere]
+	enabled = true
