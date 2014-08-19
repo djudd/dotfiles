@@ -18,16 +18,24 @@ Bundle 'slim-template/vim-slim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Valloric/YouCompleteMe'
+if version >= 703
+  Bundle 'Valloric/YouCompleteMe'
+end
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/EasyGrep'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 syntax on
 
 runtime macros/matchit.vim
+
+set background=light
+colorscheme solarized
 
 set hidden        
 set nowrap        " don't wrap lines
@@ -49,12 +57,20 @@ set noerrorbells         " don't beep
 set nobackup      " don't let vim write backup files
 set noswapfile
 
+set encoding=utf-8
+
+set gdefault    " default regexp replace all instances in line
+
+if exists('+colorcolumn')
+  execute "set colorcolumn=" . join(range(81,335), ',')
+end
+
 " EasyGrep settings
 let g:EasyGrepRecursive = 1
 let g:EasyGrepCommand = 1
 
 " remove trailing whitespace
-autocmd FileType ruby,css,scss,html,js,erb,haml,slim,jade,coffee,yaml,thor,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,css,scss,html,js,javascript,erb,eruby,haml,slim,jade,coffee,yaml,thor,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use F1 and F2 to paste/copy from/to the system clipboard
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
