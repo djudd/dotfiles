@@ -18,7 +18,7 @@ Bundle 'slim-template/vim-slim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kien/ctrlp.vim'
-if version >= 703
+if version >= 703 && has('patch584')
   Bundle 'Valloric/YouCompleteMe'
 end
 Bundle 'Lokaltog/vim-easymotion'
@@ -34,8 +34,10 @@ syntax on
 
 runtime macros/matchit.vim
 
-set background=light
-colorscheme solarized
+if has("gui_running")
+  set background=light
+  colorscheme solarized
+endif
 
 set hidden        
 set nowrap        " don't wrap lines
@@ -61,7 +63,7 @@ set encoding=utf-8
 
 set gdefault    " default regexp replace all instances in line
 
-if exists('+colorcolumn')
+if exists('+colorcolumn') && has("gui_running")
   execute "set colorcolumn=" . join(range(81,335), ',')
 end
 
