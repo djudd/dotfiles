@@ -8,10 +8,10 @@ set smarttab
 set nocompatible  " disable vi compatibility mode
 
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
@@ -28,6 +28,8 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
+
+call vundle#end()
 
 filetype plugin indent on
 syntax on
