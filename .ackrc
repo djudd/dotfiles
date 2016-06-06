@@ -15,3 +15,8 @@
 --ignore-dir=tmp
 --ignore-dir=.bunch-cache
 --ignore-dir=.sass-cache
+--ignore-dir=spec/fixtures/files
+--ignore-file=is:tags
+--ignore-file=is:_manifest.erb
+--ignore-file=ext:bk
+--ignore-dir=venv

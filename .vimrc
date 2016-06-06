@@ -28,6 +28,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -53,7 +54,7 @@ set incsearch     " show matches as you type search terms
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many more levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.bk,callgrind.out.*
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -73,8 +74,11 @@ end
 let g:EasyGrepRecursive = 1
 let g:EasyGrepCommand = 1
 
+" ctrlp settings
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " remove trailing whitespace
-autocmd FileType ruby,css,scss,html,js,javascript,erb,eruby,haml,slim,jade,coffee,yaml,thor,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,css,scss,html,js,javascript,erb,eruby,haml,slim,jade,coffee,yaml,thor,python,rust,rs,md autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use F1 and F2 to paste/copy from/to the system clipboard
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>

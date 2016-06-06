@@ -4,9 +4,10 @@
 	name = David Judd
 	email = david@academia.edu
 [push]
-	default = simple
+	default = current
 [core]
 	editor = vim
+	pager = less -F -X
 [diff]
   renames = copies
 [rerere]
