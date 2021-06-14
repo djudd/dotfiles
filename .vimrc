@@ -1,4 +1,5 @@
 set expandtab     " use spaces for tabs
+
 set tabstop=2     " a tab is two spaces
 set shiftwidth=2  " autoindent two spaces
 
@@ -7,42 +8,7 @@ set smarttab
 
 set nocompatible  " disable vi compatibility mode
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Bundle 'VundleVim/Vundle.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'slim-template/vim-slim'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'kien/ctrlp.vim'
-if version >= 703 && has('patch584')
-  Bundle 'Valloric/YouCompleteMe'
-end
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts/EasyGrep'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'rust-lang/rust.vim'
-
-call vundle#end()
-
-filetype plugin indent on
-syntax on
-
-runtime macros/matchit.vim
-
-if has("gui_running")
-  set background=light
-  colorscheme solarized
-endif
-
-set hidden        
+set hidden
 set nowrap        " don't wrap lines
 set number        " show line numbers
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
@@ -66,41 +32,51 @@ set encoding=utf-8
 
 set gdefault    " default regexp replace all instances in line
 
-if exists('+colorcolumn') && has("gui_running")
-  execute "set colorcolumn=" . join(range(81,335), ',')
-end
+syntax enable
+filetype plugin indent on
 
-" EasyGrep settings
-let g:EasyGrepRecursive = 1
-let g:EasyGrepCommand = 1
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-" ctrlp settings
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" Fuzzy filename search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-" remove trailing whitespace
-autocmd FileType ruby,css,scss,html,js,javascript,erb,eruby,haml,slim,jade,coffee,yaml,thor,python,rust,rs,md autocmd BufWritePre <buffer> :%s/\s\+$//e
+" File contents search
+Plug 'mileszs/ack.vim'
 
-" use F1 and F2 to paste/copy from/to the system clipboard
-nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-vmap <F2> :w !pbcopy<CR><CR>
+" Autocomplete
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
-" auto open nerdtree if no files passed
-autocmd vimenter * if !argc() | NERDTree | endif
+" Git integration
+Plug 'tpope/vim-fugitive'
 
-" auto close vim if only nerdtree window remains open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+" Color scheme
+Plug 'altercation/vim-colors-solarized'
 
-" search for the word under the cursor in project - requires ack & vim-ack
-nnoremap <F4> *<C-O>:AckFromSearch!<CR>
+" Languages
+Plug 'rust-lang/rust.vim'
+Plug 'vim-ruby/vim-ruby'
 
-set grepprg=ack
+call plug#end()
 
-" replace the word under the cursor
+" Use ctl-p muscle-memory with fzf
+nmap <C-P> :FZF<CR>
+
+" Use rg for grep
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
+" Open grep
+nnoremap <Leader>g :Ack!<Space>
+
+" Search for the word under the cursor, globally
+nnoremap <Leader>w *<C-O>:AckFromSearch!<CR>
+
+" Replace the word under the cursor, locally
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-
-" add ctrl-p file open support
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" local replace Ruby variable - not yet reliable at all
-" map gr gdv<Plug>(textobj-rubyblock-a):s/<C-R>///g<left><left>
